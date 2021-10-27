@@ -95,6 +95,10 @@ func defaultActionHandler(c *cli.Context) error {
 
 	err := wallpaper.SetFromURL(url)
 
+	if err == nil {
+		s.FinalMSG = "Done!"
+	}
+
 	return err
 }
 
@@ -106,10 +110,6 @@ func beforeAction(c *cli.Context) error {
 }
 
 func afterAction(c *cli.Context) error {
-	if err := c.Err(); err == nil {
-		s.FinalMSG = "Done!"
-	}
-
 	s.Stop()
 
 	return nil
